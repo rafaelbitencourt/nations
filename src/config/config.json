@@ -1,4 +1,4 @@
 {
   "URL_API": "https://countries-274616.ew.r.appspot.com/",
-  "URL_API_CUSTOM": "http://customcountries.herokuapp.com/graphql/"
+  "URL_API_CUSTOM": "https://customcountries.herokuapp.com/graphql/"
 }
