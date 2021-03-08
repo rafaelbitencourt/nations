@@ -12,10 +12,6 @@ import Paper from '@material-ui/core/Paper';
 import Image from 'material-ui-image';
 
 const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
-        minHeight: 260
-    },
     content: {
         height: '3.5rem',
         flex: 1
@@ -30,7 +26,7 @@ export default function ImgMediaCard(props) {
     const { country } = props;
 
     return (
-        <Paper className={classes.root} >
+        <Paper p={1}>
             <Card component={Link} to={`/detail/${country.numericCode}`}>
                 <CardActionArea>
                     <Image
