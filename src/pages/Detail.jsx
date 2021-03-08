@@ -19,8 +19,11 @@ import {
 
 const useStyles = makeStyles({
     carregando: {
-        marginLeft: '50%',
-        marginTop: '15rem'
+        display: 'flex',
+        flexDirection: 'column',
+        height: '70vh',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
 
@@ -96,7 +99,9 @@ export default function Detail() {
     if (!country) return (
         <>
             <Header goBackOption={true}/>
-            <CircularProgress className={classes.carregando} />
+            <Box className={classes.carregando}> 
+                <CircularProgress />
+            </Box>        
         </>
     );
 

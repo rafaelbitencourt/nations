@@ -31,6 +31,13 @@ const useStyles = makeStyles({
         maxWidth: 450,
         marginRight: '1rem'
     },
+    carregando: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '70vh',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     tablePagination: {
         position: "fixed",
         bottom: 0,
@@ -126,20 +133,23 @@ export default function Main() {
                     Pesquisar
                 </Button>
             </Box>
-            {loading ?
-                    <CircularProgress style={{marginLeft: '50%', marginTop: '5rem'}}/> :
-                    (<Container style={{flex: 1, overflow: 'auto', marginBottom: '50px'}}>
-                        <Grid container spacing={4} >   
-                            {countries.map(country => (
-                                <Grid key={country.numericCode} item lg={3} md={4} sm={6} xs={12}>
-                                    <ImgMediaCard
-                                        country={country}
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Container>)
-                }
+            {loading ? (
+                <Box className={classes.carregando}>
+                    <CircularProgress/>
+                </Box>
+            ) : (
+                <Container style={{flex: 1, overflow: 'auto', marginBottom: '50px'}}>
+                    <Grid container spacing={4} >   
+                        {countries.map(country => (
+                            <Grid key={country.numericCode} item lg={3} md={4} sm={6} xs={12}>
+                                <ImgMediaCard
+                                    country={country}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Container>
+            )}
             <Box display="flex" justifyContent="center" className={classes.tablePagination}>
                 <TablePagination
                     component="div"
