@@ -27,7 +27,8 @@ const useStyles = makeStyles({
         overflow: 'auto'
     },    
     fieldSearch: {
-        width: 450,
+        flex: 1,
+        maxWidth: 450,
         marginRight: '1rem'
     },
     tablePagination: {
@@ -102,7 +103,7 @@ export default function Main() {
     return (
         <Box className={classes.root} display="flex" flexDirection="column">
             <Header description="Nações"/>
-            <Box my={2} display="flex" justifyContent="center" alignItems="center">
+            <Box my={2} px={2} display="flex" justifyContent="center" alignItems="center">
                 <TextField
                     placeholder="Pesquisar pelo nome do país"
                     name="filtro.name"
