@@ -3,21 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Warning } from '@material-ui/icons';
 import { Link } from "react-router-dom";
 import { Box } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
+import Image from 'material-ui-image';
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
         minHeight: 260
-    },
-    media: {
-        height: 140
     },
     content: {
         height: '3.5rem',
@@ -36,12 +33,9 @@ export default function ImgMediaCard(props) {
         <Paper className={classes.root} >
             <Card component={Link} to={`/detail/${country.numericCode}`}>
                 <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        component="img"
-                        alt={country.name}
-                        image={country.flag.svgFile}
-                        title={country.name}
+                    <Image
+                        aspectRatio={(16/10)}
+                        src={country.flag.svgFile} 
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" className={classes.content}>
