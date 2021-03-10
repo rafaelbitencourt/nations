@@ -11,27 +11,21 @@ import Image from 'material-ui-image';
 import { 
     Box,
     Button, 
-    makeStyles,
-    CircularProgress,
     TextField,
     Grid
 } from '@material-ui/core';
 
-const useStyles = makeStyles({
-    carregando: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '70vh',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
-
 export default function Detail() {
-    const classes = useStyles();
-    const { register, errors, handleSubmit, setValue } = useForm();
+    const { register, errors, handleSubmit, setValue, reset } = useForm();
     const { numericCodeCountry } = useParams();
-    const [country, setCountry] = useState(null);    
+    const [country, setCountry] = useState({
+        flag: {
+            svgFile: null
+        },
+        topLevelDomains: [{ 
+            name: null 
+        }]
+    });    
     const [errorOpen, setErrorOpen] = useState(false);
     const [mensagemErro, setMensagemErro] = useState("");
     const [sucessOpen, setSucessOpen] = useState(false);
@@ -55,6 +49,7 @@ export default function Detail() {
             `)
             .then(data => {
                 setCountry(data);
+                reset();
                 setValue('country', data);
             })
             .catch(resp => {
@@ -96,15 +91,6 @@ export default function Detail() {
             );
     }
 
-    if (!country) return (
-        <>
-            <Header goBackOption={true}/>
-            <Box className={classes.carregando}> 
-                <CircularProgress />
-            </Box>        
-        </>
-    );
-
     return (
         <form>
             <Header 
@@ -127,15 +113,15 @@ export default function Detail() {
                         <TextField 
                             label="Capital"
                             name="country.capital"
-                            error={errors.country && errors.country.capital ? true : false}
-                            helperText={errors.country && errors.country.capital ? 
-                                (errors.country.capital.message || "Tamanho máximo: 100") 
-                                : null
-                            } 
+                            error={errors.country?.capital ? true : false}
+                            helperText={errors.country?.capital ? errors.country.capital.message : null } 
                             variant="outlined"
                             inputRef={register({
                                 required: "Campo obrigatório",
-                                maxLength: 100
+                                maxLength: {
+                                    value: 100,
+                                    message: "Tamanho máximo: 100"
+                                }
                             })}
                             InputLabelProps={{
                                 shrink: true,
@@ -148,15 +134,19 @@ export default function Detail() {
                             label="Área"
                             name="country.area"
                             type="number"
-                            error={errors.country && errors.country.area ? true : false}
-                            helperText={errors.country && errors.country.area ? 
-                                (errors.country.area.message || "Tamanho máximo: 20") 
-                                : null
-                            } 
+                            error={errors.country?.area ? true : false}
+                            helperText={errors.country?.area ? errors.country.area.message : null } 
                             variant="outlined"
                             inputRef={register({
                                 required: "Campo obrigatório",
-                                maxLength: 20
+                                min: {
+                                    value: 0,
+                                    message: "Valor mínimo: 0"
+                                },
+                                max: {
+                                    value: 9999999999,
+                                    message: "Valor máximo: 9999999999"
+                                }
                             })}
                             InputLabelProps={{
                                 shrink: true,
@@ -169,15 +159,19 @@ export default function Detail() {
                             label="População"
                             name="country.population"
                             type="number"
-                            error={errors.country && errors.country.population ? true : false}
-                            helperText={errors.country && errors.country.population ? 
-                                (errors.country.population.message || "Tamanho máximo: 20") 
-                                : null
-                            } 
+                            error={errors.country?.population ? true : false}
+                            helperText={errors.country?.population ? errors.country.population.message : null } 
                             variant="outlined"
                             inputRef={register({
                                 required: "Campo obrigatório",
-                                maxLength: 20
+                                min: {
+                                    value: 0,
+                                    message: "Valor mínimo: 0"
+                                },
+                                max: {
+                                    value: 9999999999,
+                                    message: "Valor máximo: 9999999999"
+                                }
                             })}
                             InputLabelProps={{
                                 shrink: true,
@@ -190,15 +184,19 @@ export default function Detail() {
                             label="Densidade Populacional"
                             name="country.populationDensity"
                             type="number"
-                            error={errors.country && errors.country.populationDensity ? true : false}
-                            helperText={errors.country && errors.country.populationDensity ? 
-                                (errors.country.populationDensity.message || "Tamanho máximo: 20") 
-                                : null
-                            } 
+                            error={errors.country?.populationDensity ? true : false}
+                            helperText={errors.country?.populationDensity ? errors.country.populationDensity.message : null } 
                             variant="outlined"
                             inputRef={register({
                                 required: "Campo obrigatório",
-                                maxLength: 20
+                                min: {
+                                    value: 0,
+                                    message: "Valor mínimo: 0"
+                                },
+                                max: {
+                                    value: 9999999999,
+                                    message: "Valor máximo: 9999999999"
+                                }
                             })}
                             InputLabelProps={{
                                 shrink: true,
@@ -208,10 +206,10 @@ export default function Detail() {
                     </Grid>
                     <Grid item lg={6} md={6} sm={6} xs={12} >
                         <Button 
+                            disabled={!country.numericCode}
                             variant="contained" 
                             color="primary" 
                             onClick={handleSubmit(cbSubmit)}
-                            className={classes.componentLeft}
                             fullWidth={true}>
                             Salvar customização
                         </Button>
@@ -222,7 +220,6 @@ export default function Detail() {
                             variant="contained" 
                             color="secondary" 
                             onClick={removeCustom}
-                            className={classes.componentRight}
                             fullWidth={true}>
                             Remover customização
                         </Button>
