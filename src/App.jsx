@@ -1,8 +1,10 @@
 import './App.css';
 import Main from './pages/Main';
 import Detail from './pages/Detail';
+import Login from './pages/Login';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import PrivateRoute from './components/PrivateRoute';
 
 import {
   BrowserRouter as Router,
@@ -27,8 +29,9 @@ function App() {
         <CssBaseline />
         <main>
           <Switch>
-            <Route path="/detail/:numericCodeCountry" component={Detail}/>
-            <Route path="/" component={Main}/>
+            <Route path="/login" component={Login}/>
+            <PrivateRoute path="/detail/:numericCodeCountry" component={Detail}/>
+            <PrivateRoute path="/" component={Main}/>
           </Switch>
         </main>
       </div>

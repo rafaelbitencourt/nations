@@ -20,7 +20,7 @@ export default function Detail() {
     const { numericCodeCountry } = useParams();
     const [country, setCountry] = useState({
         flag: {
-            svgFile: null
+            svgFile: ""
         },
         topLevelDomains: [{ 
             name: null 
@@ -55,7 +55,7 @@ export default function Detail() {
             .catch(resp => {
                 alert('Ocorreu um erro ao buscar o país: ' + resp.message);
             });
-    }, [setValue]);
+    }, [setValue, reset]);
 
     useEffect(() => {
         recCountry(numericCodeCountry);
