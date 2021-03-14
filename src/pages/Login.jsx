@@ -39,9 +39,11 @@ export default function Detail() {
     };
 
     return (
-        <form>
-            <Header description="Login" />
-            <Box p={2} display="flex" flexDirection="column" alignItems="center">
+        <Box style={{height: '100vh'}} display="flex" flexDirection="column" alignItems="center">
+            <Box width={1}>
+                <Header description="Login" />
+            </Box>
+            <Box p={2} flex="1" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid style={{maxWidth:500}} container spacing={2} >
                     <Grid item lg={12} md={12} sm={12} xs={12} >
                         <TextField 
@@ -100,6 +102,6 @@ export default function Detail() {
                 open={errorOpen}
                 setOpen={setErrorOpen}
             />
-        </form>
+        </Box>
     );
 }
