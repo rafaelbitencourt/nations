@@ -1,9 +1,9 @@
-import { Client, ClientCustom } from '../api/api'
+import { Client, ClientCustom } from '../api/api';
 import { gql } from '@apollo/client';
 
 const mergeCustom = (countries, countriesCustom) => {
     return countries.map(country => {
-        var countryCustom = countriesCustom.find(x => x.numericCode === country.numericCode);
+        var countryCustom = countriesCustom?.find(x => x.numericCode === country.numericCode);
         return countryCustom ? {...country, ...countryCustom, custom: true} : country;
     });
 }
@@ -67,4 +67,15 @@ export const getCountry = (numericCode, properties) =>
             })
             .then(result => listCountriesCustom(result.data.Country)
                 .then(countries => countries[0]));
+
+export const getToken = (name, password) =>
+        ClientCustom
+            .query({
+            query: gql`
+                query {
+                    token(name:"${name}", password:"${password}")    
+                }
+            `
+            })
+            .then(result => result.data.token);                
             

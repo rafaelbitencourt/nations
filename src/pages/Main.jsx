@@ -154,7 +154,8 @@ export default function Main() {
                 <TablePagination
                     component="div"
                     rowsPerPageOptions={[12, 24, 48, 96]}
-                    labelRowsPerPage="Cards por página"
+                    labelRowsPerPage="Na página"
+                    labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
                     count={rowsTotal}
                     page={page}
                     onChangePage={handleChangePage}
