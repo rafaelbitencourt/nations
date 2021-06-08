@@ -32,27 +32,25 @@ export default function Header(props) {
     AuthService.logout();
     history.push("/login");
   };
-  
+
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          { goBackOption ? (
+          {goBackOption &&
             <Tooltip title="Voltar">
-              <IconButton variant="contained" style={{color: "white"}} onClick={() => history.goBack()}>
+              <IconButton variant="contained" style={{ color: "white" }} onClick={() => history.goBack()}>
                 <Backspace />
               </IconButton>
             </Tooltip>
-          ) : (
-            <React.Fragment/>
-          )}
+          }
           <Typography variant="h6" className={classes.title}>
             {description}
           </Typography>
           <Typography variant="h6">
             {descriptionRight}
           </Typography>
-          {logado && 
+          {logado &&
             <Button color="inherit" onClick={() => setConfirmOpen(true)}>Sair</Button>
           }
         </Toolbar>

@@ -30,8 +30,8 @@ export default function ImgMediaCard(props) {
             <Card component={Link} to={`/detail/${country.numericCode}`}>
                 <CardActionArea>
                     <Image
-                        aspectRatio={(16/10)}
-                        src={country.flag.svgFile} 
+                        aspectRatio={(16 / 10)}
+                        src={country.flag.svgFile}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" className={classes.content}>
@@ -41,15 +41,13 @@ export default function ImgMediaCard(props) {
                             <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>
                                 {country.capital}
                             </Typography>
-                            {country.custom ? (
+                            {country.custom &&
                                 <Box display="flex" alignItems="right">
                                     <Tooltip title="Informações customizadas">
                                         <Warning style={{ color: '#fb8c00' }} />
                                     </Tooltip>
                                 </Box>
-                            ) : (
-                                <React.Fragment/>
-                            )}
+                            }
                         </Box>
                     </CardContent>
                 </CardActionArea>

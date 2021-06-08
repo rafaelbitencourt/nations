@@ -11,9 +11,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
                 return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
             }
 
-            return <React.Fragment>
-                <Component {...props} />
-            </React.Fragment>
+            return <Component {...props} />
         }} />
     );
 }

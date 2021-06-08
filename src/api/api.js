@@ -1,14 +1,13 @@
-import configData from "../config/config.json";
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 export const Client = new ApolloClient({
-  uri: configData.URL_API,
+  uri: process.env.REACT_APP_URL_API,
   cache: new InMemoryCache()
 });
 
 const httpLink = createHttpLink({
-  uri: configData.URL_API_CUSTOM,
+  uri: process.env.REACT_APP_URL_API_CUSTOM,
 });
 
 const authLink = setContext((_, { headers }) => {
