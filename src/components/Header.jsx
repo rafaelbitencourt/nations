@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import AuthService from '../services/auth.service';
-import { ConfirmDialog } from '../components/Dialog';
+import { AuthService } from 'services';
+import { ConfirmDialog } from 'components/Dialog';
 
 import {
   AppBar,
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header(props) {
+const Header = (props) => {
   const classes = useStyles();
   const { description, descriptionRight, goBackOption } = props;
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -65,3 +65,5 @@ export default function Header(props) {
     </div>
   );
 }
+
+export default Header;

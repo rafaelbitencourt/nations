@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function ImgMediaCard(props) {
+const ImgMediaCard = (props) => {
     const classes = useStyles();
     const { country } = props;
 
@@ -55,3 +55,5 @@ export default function ImgMediaCard(props) {
         </Paper>
     );
 }
+
+export default ImgMediaCard;

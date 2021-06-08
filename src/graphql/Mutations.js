@@ -1,7 +1,7 @@
-import { ClientCustom } from '../api/api'
+import { ClientCustom } from 'api'
 import { gql } from '@apollo/client';
 
-export const saveCountry = (country) =>
+const saveCountry = (country) =>
     ClientCustom
         .mutate({
             mutation: gql`
@@ -23,7 +23,7 @@ export const saveCountry = (country) =>
             `
         }).then(result => result.data.country);
 
-export const removeCountry = (country) =>
+const removeCountry = (country) =>
         ClientCustom
             .mutate({
                 mutation: gql`
@@ -36,3 +36,8 @@ export const removeCountry = (country) =>
                     }
                 `
             }).then(result => result.data.country);        
+
+export {
+    saveCountry,
+    removeCountry
+}            

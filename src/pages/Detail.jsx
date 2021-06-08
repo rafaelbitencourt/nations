@@ -2,10 +2,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { saveCountry, removeCountry } from '../graphql/Mutations';
-import { getCountry } from '../graphql/Queries';
-import { SuccessDialog, ErrorDialog } from '../components/Dialog';
-import Header from '../components/Header';
+import { saveCountry, removeCountry } from 'graphql/Mutations';
+import { getCountry } from 'graphql/Queries';
+import { SuccessDialog, ErrorDialog } from 'components/Dialog';
+import { Header } from 'components';
 import Image from 'material-ui-image';
 
 import { 
@@ -15,7 +15,7 @@ import {
     Grid
 } from '@material-ui/core';
 
-export default function Detail() {
+const Detail = () => {
     const { register, errors, handleSubmit, setValue, reset } = useForm();
     const { numericCodeCountry } = useParams();
     const [country, setCountry] = useState({
@@ -239,3 +239,5 @@ export default function Detail() {
         </form>
     );
 }
+
+export default Detail;

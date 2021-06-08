@@ -1,10 +1,8 @@
-import './App.css';
-import Main from './pages/Main';
-import Detail from './pages/Detail';
-import Login from './pages/Login';
+import 'App.css';
+import { Main, Detail, Login } from 'pages';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import PrivateRoute from './components/PrivateRoute';
+import { PrivateRoute } from 'components';
 
 import {
   BrowserRouter as Router,

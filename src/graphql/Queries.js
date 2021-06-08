@@ -1,4 +1,4 @@
-import { Client, ClientCustom } from '../api/api';
+import { Client, ClientCustom } from 'api';
 import { gql } from '@apollo/client';
 
 const mergeCustom = (countries, countriesCustom) => {
@@ -28,7 +28,7 @@ const listCountriesCustom = (countries) => {
     return result;
 }
 
-export const countCountries = (filter) => 
+const countCountries = (filter) => 
     Client
         .query({
         query: gql`
@@ -41,7 +41,7 @@ export const countCountries = (filter) =>
         })
         .then(result => result.data.Country.length);
 
-export const listCountries = (offset, first, filter, properties) => 
+const listCountries = (offset, first, filter, properties) => 
     Client
         .query({
         query: gql`
@@ -54,7 +54,7 @@ export const listCountries = (offset, first, filter, properties) =>
         })
         .then(result => listCountriesCustom(result.data.Country));
 
-export const getCountry = (numericCode, properties) =>
+const getCountry = (numericCode, properties) =>
         Client
             .query({
             query: gql`
@@ -68,7 +68,7 @@ export const getCountry = (numericCode, properties) =>
             .then(result => listCountriesCustom(result.data.Country)
                 .then(countries => countries[0]));
 
-export const getToken = (name, password) =>
+const getToken = (name, password) =>
         ClientCustom
             .query({
             query: gql`
@@ -79,3 +79,9 @@ export const getToken = (name, password) =>
             })
             .then(result => result.data.token);                
             
+export {
+    countCountries,
+    listCountries,
+    getCountry,
+    getToken
+}            

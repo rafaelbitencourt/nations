@@ -1,5 +1,5 @@
-import { getToken } from '../graphql/Queries';
-import { ClientCustom } from '../api/api';
+import { getToken } from 'graphql/Queries';
+import { ClientCustom } from 'api';
 
 const AUTH_TOKEN = 'auth-token';
 

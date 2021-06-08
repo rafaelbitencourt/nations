@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
-import AuthService from '../services/auth.service';
-import { ErrorDialog } from '../components/Dialog';
-import Header from '../components/Header';
+import { AuthService } from 'services';
+import { ErrorDialog } from 'components/Dialog';
+import { Header } from 'components';
 
 import { 
     Box,
@@ -13,7 +13,7 @@ import {
     Grid
 } from '@material-ui/core';
 
-export default function Detail() {
+const Login = () => {
     const { register, errors, handleSubmit } = useForm();
     const [errorOpen, setErrorOpen] = useState(false);
     const [mensagemErro, setMensagemErro] = useState("");
@@ -105,3 +105,5 @@ export default function Detail() {
         </Box>
     );
 }
+
+export default Login;

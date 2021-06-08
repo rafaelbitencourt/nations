@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { listCountries, countCountries } from '../graphql/Queries';
+import { listCountries, countCountries } from 'graphql/Queries';
 import ImgMediaCard from '../components/Cards';
 import Header from '../components/Header';
 import { useForm } from 'react-hook-form';
@@ -46,7 +46,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Main() {
+const Main = () => {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(0);
@@ -166,3 +166,5 @@ export default function Main() {
         </Box>
     );
 }
+
+export default Main;
